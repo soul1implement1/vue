@@ -1,0 +1,12 @@
+{
+  "msg": "axios-vue-test,登陆成功",
+  "code": 200,
+  "data":{
+    "test": [
+      "a-test",
+      "b-test",
+      "c-test"
+    ]
+
+  }
+}

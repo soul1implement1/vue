@@ -1,0 +1,12 @@
+{
+  "msg": "axios-vue-test",
+  "code": 200,
+  "data":{
+    "test": [
+      "a-test",
+      "b-test",
+      "c-test"
+    ]
+
+  }
+}

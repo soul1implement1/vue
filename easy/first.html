@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title> simple vue</title>
+    <!--    开发环境-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--    生产环境    -->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>-->
+</head>
+<body>
+<div id="app">
+    <span v-bind:title="msg">
+        鼠标悬停几秒钟查看此处动态绑定的提示信息！
+      </span>
+    <br>
+    <!--    var-->
+    {{msg}}
+    {{type}}
+
+    <!--    if-else-->
+    <h1 v-if="type==='a'"> a</h1>
+    <h1 v-else-if="type==='b'">b</h1>
+    <h1 v-else="type==='c'">{{type}}</h1>
+
+    <!--    for-->
+    <li v-for=" item in arr">
+        {{item.name}}
+    </li>
+
+    <!--    绑定事件v-on-->
+    <button v-on:click="sayVueHello"> 点我</button>
+
+<!--    计算属性-->
+    <p>methods-time:{{time1()}}</p>
+    <p>computed-time:{{time2}}</p>
+
+</div>
+
+
+<script>
+    let app = new Vue({
+            // dom
+            el: "#app",
+            // data
+            data: {
+                msg: "hello!world-Vue.",
+                ok: true,
+                type: 'a',
+                arr: [
+                    {name: "a0"},
+                    {name: "a1"}
+                ]
+            },
+            // 绑定方法
+            methods: {
+                sayVueHello: function () {
+                    alert(this.msg);
+                },
+                time1:function () {
+                    return new Date().getUTCMilliseconds();
+                }
+            },
+            // 计算属性
+            computed: {
+                time2:function () {
+                    return new Date().getUTCMilliseconds();
+                }
+            }
+        })
+
+    ;
+</script>
+</body>
+</html>

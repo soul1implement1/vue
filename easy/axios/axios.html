@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue axios</title>
+    <!--    cdn-axios-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="axios">
+    <p>{{info}}</p>
+</div>
+<script>
+    let app = new Vue({
+            el: "#axios",
+            data() {
+                return {
+                    info: {
+                        msg: null,
+                        code: null,
+                        data: null
+                    }
+                }
+            },
+            // 钩子
+            mounted() {
+
+
+                // axios.all()//多请求
+
+                axios.get("test-vue.json").then(
+                    response => {
+                        console.log(response.data);
+                        this.info = response.data;
+                    }
+                ).catch(
+                    Error => {
+                        console.log(Error);
+                    }
+                )
+
+                // axios({
+                //     method: 'get',
+                //     url: 'http://47.96.150.116:3000/myblog/index/getCount.action'
+                //     ,proxy: {
+                //         host: '127.0.0.1',
+                //         port: 9000,
+                //         auth: {
+                //             username: 'mikeymike',
+                //             password: 'rapunz3l'
+                //         }
+                //     }
+                //
+                // }).then(
+                //     response => {
+                //         console.log(response.data);
+                //         this.info = response.data;
+                //     }).catch(
+                //     Error => {
+                //         console.log(Error);
+                //     }
+                // );
+            }
+        })
+    ;
+</script>
+</body>
+</html>

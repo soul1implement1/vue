@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>vue two-way binding</title>
+    <!--    开发环境-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--    生产环境    -->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>-->
+</head>
+<body>
+<div id="app">
+    <p>{{message}}</p>
+    <input v-model="message"/>
+
+    <select v-model="op">
+        <option disabled value="">---请选择---</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+    </select>
+    SELECTED:{{op}}
+</div>
+
+
+<script>
+
+    let app = new Vue({
+            // dom
+            el: "#app",
+            // data
+            data: {
+                op: '',
+                message: "hello!world-Vue.",
+                arr: [
+                    {name: "a0"},
+                    {name: "a1"}
+                ]
+            },
+            // 绑定方法
+            methods: {
+                sayVueHello: function () {
+                    alert(this.msg);
+                }
+            }
+        })
+    ;
+</script>
+</body>
+</html>

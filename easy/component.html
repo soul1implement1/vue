@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>vue component</title>
+    <!--    开发环境-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--    生产环境    -->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>-->
+</head>
+<body>
+<div id="app">
+    {{items}}
+    <mytag v-for="item in items" v-bind:item1="item"></mytag>
+</div>
+<script>
+    Vue.component("mytag", {
+        // 参数
+        props: ['item1'],
+        // 模板
+        template: '<li>my--{{item1}}</li>'
+    });
+    let app = new Vue({
+            // dom
+            el: "#app",
+            // data
+            data: {
+                message: "hello!world-Vue.",
+                items: [
+                    "a", "b", "c"
+                ]
+            }
+
+        })
+    ;
+</script>
+</body>
+</html>

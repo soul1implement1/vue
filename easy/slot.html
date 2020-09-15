@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>vue slot</title>
+    <!--    开发环境-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--    生产环境    -->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>-->
+</head>
+<body>
+<div id="app">
+
+    <!--    <p>书架</p>-->
+    <!--    <ul>-->
+    <!--        <li>java</li>-->
+    <!--        <li>c</li>-->
+    <!--        <li>c++</li>-->
+    <!--    </ul>-->
+
+    <!--    简化ul-->
+    <!--    <p>{{tittle}}</p>-->
+    <!--    <ul>-->
+    <!--        <li v-for="item in items">{{item}}</li>-->
+    <!--    </ul>-->
+
+    <todo-slot>
+        <!--       v-on@click==========v-bind:-->
+        <todo-p slot="todo-p" :tittle="tittle"></todo-p>
+        <todo-li slot="todo-li" v-for="item in items" :item="item"></todo-li>
+    </todo-slot>
+
+</div>
+<script>
+    // 插槽是为了简化模板，不动HTML
+    Vue.component("todo-slot", {
+
+        // 模板,插ul
+        template: '<div><p><slot name="todo-p"></slot></p>' +
+            '<ul>' +
+            '<slot name="todo-li"></slot>' +
+            '</ul></div>'
+    });
+    // 内容
+    Vue.component("todo-li", {
+        props: ['item','index'],
+        template: '<li>{{item}}--------{{index}} <button @click="remove(index)">测试删除</button></li>',
+        methods: {
+            remove: function (index) {
+                app.removeItem(index);
+            }
+        }
+    })
+    ;
+    // 标题
+    Vue.component("todo-p", {
+        props: ['tittle'],
+        template: '<p>{{tittle}}</p>'
+    });
+
+    let app = new Vue({
+            // dom
+            el: "#app",
+            // data
+            data: {
+                message: "hello!world-Vue.",
+                tittle: "书架",
+                items: [
+                    "java", "c", "c++"
+                ]
+            },
+            methods:{
+                removeItem:function (index) {
+                    console.log(index+"--删除")
+                    this.items.splice(index,1);
+                }
+            }
+
+        })
+    ;
+</script>
+</body>
+</html>
